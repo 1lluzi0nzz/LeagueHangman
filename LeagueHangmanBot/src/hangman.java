@@ -10,13 +10,15 @@ public class hangman {
 	
 	public static void main(String[] args) {
 		try{
+			System.out.println(new File("./").getAbsolutePath());
 			setUp();
 		}catch(Exception e) {	
+			e.printStackTrace();
 		}
 	}
 	
 	public static void createHangman() throws FileNotFoundException {
-		File words = new File("C:\\Users\\bwhit\\Documents\\Hangman\\hangman.txt");
+		File words = new File("./LeagueHangman/LeagueHangmanBot/lib/hangman.txt");
 		Scanner scn = new Scanner(words);
 		while(scn.hasNext()) {
 			String full = "";
@@ -29,7 +31,7 @@ public class hangman {
 	}
 	
 	public static void createWord() throws FileNotFoundException{
-		File words = new File("C:\\Users\\bwhit\\Documents\\Hangman\\champions.txt");
+		File words = new File("./LeagueHangman/LeagueHangmanBot/lib/champions.txt");
 		Scanner scn = new Scanner(words);
 		while(scn.hasNext()) {
 			String champ = scn.nextLine();
@@ -98,7 +100,9 @@ public class hangman {
 				if(car != '|') {
 					if(chosen.contains("" + car)) {
 						hidden = hidden + car + "|";
-						found = true;
+						if(chosen.get(chosen.size() - 1).equals(""+car)){
+							found = true;
+						}
 					}else if(car == ' '){
 						hidden = hidden + " " + "|";
 					}else {
